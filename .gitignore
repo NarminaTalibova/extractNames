@@ -1,32 +1,43 @@
-# Prerequisites
-*.d
+namespace ConsoleApp12
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] fullNameArray = { "Ayxan Muradov", "Senan Quliyev", "Leyla Quliyeva" };
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+            string[] namesArray = ExtractNames(fullNameArray);
 
-# Precompiled Headers
-*.gch
-*.pch
+            Console.WriteLine("Extracted Names:");
+            foreach (string name in namesArray)
+            {
+                Console.WriteLine(name);
+            }
+        }
+        static string[] ExtractNames(string[] fullNameArray)
+        {
+            string[] namesArray = new string[fullNameArray.Length];
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+            for (int i = 0; i < fullNameArray.Length; i++)
+            {
+                // Boşlugu tap
+                int spaceIndex = fullNameArray[i].IndexOf(' ');
 
-# Fortran module files
-*.mod
-*.smod
+                // Boşluktan evvelki hisseni gotur (ad)
+                if (spaceIndex != -1)
+                {
+                    namesArray[i] = fullNameArray[i].Substring(0, spaceIndex);
+                }
+                else
+                {
+                    // boşluk yoxdursa tam adı al
+                    namesArray[i] = fullNameArray[i];
+                }
+            }
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+            return namesArray;
+        }
 
-# Executables
-*.exe
-*.out
-*.app
+
+    }
+}
